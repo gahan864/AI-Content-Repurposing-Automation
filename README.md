@@ -1,6 +1,6 @@
 # AI-Powered Business Report Automation
 
-A Python CLI tool that automates business performance reporting by loading CSV sales data into SQLite, running predefined SQL queries to extract KPIs, detecting anomalies using z-score logic, and generating a structured natural language report via the OpenAI Chat Completions API.
+A Python CLI tool that automates business performance reporting by loading CSV sales data into SQLite, running predefined SQL queries to extract KPIs, detecting anomalies using z-score logic, and generating a structured natural language report (currently mocked for demonstration purposes).
 
 ## Problem It Solves
 Manual business reporting is slow, repetitive, and error-prone. This tool automates the entire process — from raw data ingestion to a formatted executive summary — in a single command.
@@ -8,7 +8,7 @@ Manual business reporting is slow, repetitive, and error-prone. This tool automa
 ## Architecture
 
 ```text
-CSV Data → SQLite In-Memory DB → SQL Queries → KPI Summary + Anomalies → OpenAI API → Natural Language Report
+CSV Data → SQLite In-Memory DB → SQL Queries → KPI Summary + Anomalies → Mock AI Engine → Natural Language Report
 ```
 
 ## Installation
@@ -22,12 +22,6 @@ CSV Data → SQLite In-Memory DB → SQL Queries → KPI Summary + Anomalies →
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
-   ```
-
-3. Set up your environment variables:
-   Create a `.env` file in the root directory and add your OpenAI API key:
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
    ```
 
 ## Usage
@@ -83,11 +77,11 @@ Report saved to output/report.txt
 | Language | Python 3.10+ |
 | Database | SQLite3 (in-memory) |
 | Data Processing | Pandas |
-| AI / LLM | OpenAI Python SDK (GPT-3.5-Turbo) |
+| AI / LLM | Mocked for demonstration |
 | Environment | python-dotenv |
 | CLI Interface | argparse |
 
 ## How the AI prompt is engineered
-The tool uses a structured approach to interact with the OpenAI API:
+The tool was originally designed with a structured approach to interact with the OpenAI API (prompts remain in the code for reference):
 - **System Prompt**: Sets the persona as a "senior business analyst AI" and strictly defines the output format (Executive Summary, Revenue Analysis, Campaign ROI, Trend Analysis, Anomalies, Recommendations) with instructions to be direct and use numbers.
 - **User Prompt**: Dynamically injects the computed KPI summary (from SQL queries) and any statistically significant anomalies detected using z-score logic. This ensures the LLM's analysis is strictly grounded in accurate data rather than hallucinations.

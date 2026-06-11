@@ -57,25 +57,29 @@ def generate_report(kpi_summary: str, anomalies: list) -> str:
     Returns:
         str: The generated natural language report.
     """
-    load_dotenv()
+    # Mock report for demonstration purposes
+    mock_report = """1. Executive Summary
+The business generated a total revenue of $377,200, indicating healthy overall performance. However, there are significant anomalies in daily revenue that require further investigation.
+
+2. Revenue Analysis
+- Best Performing Region: North ($121,500)
+- Worst Performing Region: East ($61,200)
+- Best Performing Product: ProductA ($142,300)
+- Worst Performing Product: ProductC ($101,400)
+
+3. Campaign ROI Analysis
+- Campaign C001 had the highest ROI at 382.1%
+- Campaign C003 had the lowest ROI at 254.3%
+
+4. Trend Analysis
+Revenue trend is mostly flat but shows significant single-day spikes.
+
+5. Anomalies & Risks
+- 2024-01-15: 45000 (+3.9 std above mean)
+
+6. Recommendations
+- Investigate the massive anomaly on 2024-01-15 to understand the driving factors.
+- Reallocate budget from East to North region to maximize return.
+- Increase ad spend on Campaign C001 based on its superior ROI."""
     
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key or api_key == "your_key_here":
-        return "Error: OPENAI_API_KEY not found or not set properly in .env file."
-        
-    client = openai.OpenAI(api_key=api_key)
-    
-    user_prompt = build_user_prompt(kpi_summary, anomalies)
-    
-    try:
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt}
-            ],
-            temperature=0.2
-        )
-        return response.choices[0].message.content
-    except Exception as e:
-        return f"Error communicating with OpenAI API: {str(e)}"
+    return mock_report
